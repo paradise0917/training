@@ -79,7 +79,7 @@
 
                 function Login()
                 {
-                    FB.Login(function(response){
+                    FB.login(function(response){
                         statusChangeCallback(response);
                     })
                 }
@@ -87,7 +87,7 @@
             </script>
         <h3>Facebook Login</h3>
         <div id="Div_welcome" class="hidden">
-            <button onclick="Login()" scope="public_profile,email">Login Facebook</button>
+            <button onclick="Login()">Login Facebook</button>
         </div>
         <div id="Div_main" class="hidden">
             Hello :) 
