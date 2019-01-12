@@ -50,6 +50,7 @@
                     if (response.status === 'connected') {
                     // Logged into your app and Facebook.
                         main.setAttribute("class","");
+                        TestAPI();
                     } else { //使用者未登入，鼓勵使用者登入
                         welcome.setAttribute("class","");
                         
@@ -101,7 +102,7 @@
 
                 function TestAPI()
                 {
-                    FB.api('/me',function(response){
+                    FB.api('/me?fields="id,name,email,user_gender,user_birthday"',function(response){
                         console.log(response);
                     });
                 }
