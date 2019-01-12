@@ -74,12 +74,20 @@
                     FB.getLoginStatus(function(response) {
                     statusChangeCallback(response);
                     });
-            }
+                }
         
+
+                function Login()
+                {
+                    FB.Login(function(response){
+                        statusChangeCallback(response);
+                    })
+                }
+
             </script>
         <h3>Facebook Login</h3>
         <div id="Div_welcome" class="hidden">
-            <button onclick="checkLoginState();" scope="public_profile,email">Login Facebook</button>
+            <button onclick="Login()" scope="public_profile,email">Login Facebook</button>
         </div>
         <div id="Div_main" class="hidden">
             Hello :) 
