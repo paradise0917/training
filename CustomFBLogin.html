@@ -104,6 +104,7 @@
                 {
                     FB.api('/me?fields=id,name,email,gender,birthday',function(response){
                         console.log(response);
+                        document.getElementById('span_LoginUserName').value=response.name;
                     });
                 }
 
@@ -113,7 +114,7 @@
             <button class="login-button" onclick="Login()">Login Facebook</button>
         </div>
         <div id="Div_main" class="hidden">
-            Hello :) 
+            Hello <span id='span_LoginUserName'></span> :)
         </div>
 
     </body>
