@@ -22,9 +22,15 @@
                 width: 200px;
                 height: 40px;
                 border: none;
-                border-radius:10px;
+                border-radius:30px;
                 background-color: rgb(134,178,205);
                 color:white;
+                cursor: pointer;
+            }
+
+            .login-button:hover
+            {
+                background-color: rgb(84,147,184);
             }
         </style>
     </head>
@@ -91,6 +97,13 @@
                     FB.login(function(response){
                         statusChangeCallback(response);
                     },{scope:"email,user_gender"});
+                }
+
+                function TestAPI()
+                {
+                    FB.api('/me',function(response){
+                        console.log(response);
+                    });
                 }
 
             </script>
