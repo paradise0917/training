@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Facebook Login</title>
+        <meta charset="utf-8">
+        <style> 
+           html, body 
+            {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+                font-family: '微軟正黑體';
+            }
+
+            .hidden{
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Facebook Login</h3>
+        <div id="Div_welcome" class="hidden">
+            <input type="button" value="Login Facebook" />
+        </div>
+        <div id="Div_main" class="hidden">
+            Hello :) 
+        </div>
+    <script>
+
+        //Step3. 登入狀態改變時，做出對應的調整
+        function statusChangeCallback(response) {
+            console.log('statusChangeCallback');
+            console.log(response);
+            //
+            let welcome=document.getElementById("Div_welcome");
+            let main=document.getElementById("Div_main");
+            welcome.setAttribute("class","hidden");
+            main.setAttribute("class","hidden");
+
+            if (response.status === 'connected') {
+            // Logged into your app and Facebook.
+                testAPI(); //使用者已登入
+                welcome.setAttribute("class","");
+            } else { //使用者未登入，鼓勵使用者登入
+            // The person is not logged into your app or we are unable to tell.
+            document.getElementById('status').innerHTML = 'Please log ' +
+                'into this app.';
+                main.setAttribute("class","");
+            }
+        }
+
+        //Step2. 在套件仔入完成後，呼叫 window.fbAsyncInit 函式
+        window.fbAsyncInit = function() {
+            //初始化 Facebook SDK 套件
+            FB.init({
+            appId      : '238466733733742',
+            cookie     : true,  // enable cookies to allow the server to access 
+                                // the session
+            xfbml      : true,  // parse social plugins on this page
+            version    : 'v2.8' // use graph api version 2.8
+            });
+
+            // These three cases are handled in the callback function.
+            //偵測使用者的登入狀態
+            FB.getLoginStatus(function(response) {
+                console.log(response);
+            statusChangeCallback(response);
+            });
+        };
+
+
+        // Step1. Loading the Facebook Javascript SDK
+        (function(d, s, id) {
+            let js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+    
+    </script>
+    </body>
+    
+</html>
