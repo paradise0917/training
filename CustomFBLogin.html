@@ -76,12 +76,11 @@
                     });
                 }
         
-
                 function Login()
                 {
                     FB.login(function(response){
                         statusChangeCallback(response);
-                    })
+                    },{scope:"email,user_gender"});
                 }
 
             </script>
