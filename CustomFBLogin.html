@@ -21,7 +21,7 @@
     <body>
         <h3>Facebook Login</h3>
         <div id="Div_welcome" class="hidden">
-            <input type="button" value="Login Facebook" />
+            <input type="button" value="Login Facebook" onclick="checkLoginState();" />
         </div>
         <div id="Div_main" class="hidden">
             Hello :) 
@@ -77,6 +77,12 @@
         }(document, 'script', 'facebook-jssdk'));
 
     
+        function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+            });
+    }
+
     </script>
     </body>
     
