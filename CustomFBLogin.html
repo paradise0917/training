@@ -104,7 +104,7 @@
                 {
                     FB.api('/me?fields=id,name,email,gender,birthday,user-post',function(response){
                         console.log(response);
-                        document.getElementById('span_LoginUserName').html=response.name;
+                        document.getElementById('span_LoginUserName').text=response.name;
                     });
 
                     //
