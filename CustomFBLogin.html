@@ -100,13 +100,19 @@
                     },{scope:"email,user_gender"});
                 }
 
-                function TestAPI()
+               function TestAPI()
                 {
-                    FB.api('/me?fields=id,name,email,gender,birthday',function(response){
+                    FB.api('/me?fields=id,name,email,gender,birthday,user-post',function(response){
                         console.log(response);
-                        document.getElementById('span_LoginUserName').innerHTML=response.name;
+                        document.getElementById('span_LoginUserName').html=response.name;
+                    });
+
+                    //
+                    FB.api('/me/feed',function(response){
+                        console.log(response);
                     });
                 }
+
 
             </script>
         <h3>Facebook Login</h3>
