@@ -99,6 +99,16 @@
                         statusChangeCallback(response);
                     },{scope:"email,user_gender,user_posts"});
                 }
+            
+                function share()
+                {
+                    FB.ui({
+                        method: 'share',
+                        href: 'https://developers.facebook.com/docs/',
+                    }, function(response){
+                        console.log('share:'+response);
+                    });
+                }
 
                function TestAPI()
                 {
@@ -121,6 +131,9 @@
         </div>
         <div id="Div_main" class="hidden">
             Hello <span id='span_LoginUserName'></span> :)
+        </div>
+        <div id="Div_Share" class="">
+            <input type="button" value="share" onclick="share()">
         </div>
 
     </body>
