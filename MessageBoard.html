@@ -9,7 +9,7 @@
                 height: 100%;
                 margin: 0;
                 padding: 0;
-                text-align: center;
+                /* text-align: center; */
                 font-family: '微軟正黑體';
             }
             hr{
@@ -95,14 +95,14 @@
         Welcome.setAttribute("class","isHidden");
         Member.setAttribute("class","isVisible");
         CurrentUser=user;
-        document.getElementById("Span_DisplayName").text="Hello, "+CurrentUser.displayName;
+        document.getElementById("Span_DisplayName").innerHTML="Hello, "+CurrentUser.displayName;
     } else {
         // User is signed out.
         console.log("user sign out:"+user);
         Welcome.setAttribute("class","isVisible");
         Member.setAttribute("class","isHidden");
         CurrentUser=null;
-        document.getElementById("Span_DisplayName").text="";
+        document.getElementById("Span_DisplayName").innerHTML="";
     }
     });
 
@@ -140,6 +140,9 @@
         }
         else{
             console.log("OK");
+            Read();
+            document.querySelector("#content").value="";
+
         }
     });
     }
@@ -165,8 +168,7 @@
         for(let i=0;i<data.length;i++)
         {
             message=data[i];
-            list.innerHTML=message.name.bold()+" "+message.content+"<hr />"+list.innerHTML;
-
+            list.innerHTML=message.name.bold()+"  "+message.content+"<hr />"+list.innerHTML;
         }
     }
 
