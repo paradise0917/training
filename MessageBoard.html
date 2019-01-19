@@ -77,12 +77,12 @@
     let provider=new firebase.auth.FacebookAuthProvider();
     provider.addScope('user_birthday');
     provider.setCustomParameters({'display': 'popup'});
-    
+
     function Signin()
     {
         auth.signInWithPopup(provider).then(function(result) 
         {
-            
+            console.log(result);
         }).catch(function(error) {
       
         });
