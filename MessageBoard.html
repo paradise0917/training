@@ -117,9 +117,13 @@
         let name=CurrentUser.displayName;
         let content=document.querySelector("#content");
         //add to database 
+        alert(content);
         let ref=DB.ref("/message");
         ref.push({
-            id:id, name:name, content:content, time:Date.now()
+            id:id, 
+            name:name, 
+            content:content, 
+            time:Date.now()
         }
         ,function(error){
         if(error)
