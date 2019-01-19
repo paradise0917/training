@@ -157,7 +157,6 @@
                 message.key=snapshot.key;
                 data.push(message);
             });
-            console.log(data);
             ShowData(data);
         })
     }
@@ -198,7 +197,7 @@
                 {
                     // The Login User is same as Current User
                     let DeleteButton="<input type='button' value='Delete' class='btn' onclick='Del("+message.key+")'>";
-                    list.innerHTML=message.name.bold()+"  "+message.content+"<hr />"+list.innerHTML;
+                    list.innerHTML=message.name.bold()+"  "+message.content+" "+DeleteButton+"<hr />"+list.innerHTML;
                 }
                 else
                 {
