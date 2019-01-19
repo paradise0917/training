@@ -6,8 +6,7 @@
         <style>
              html, body 
             {
-                height: 100%;
-                margin: 0;
+                margin: 20px;
                 padding: 0;
                 text-align: center;
                 font-family: '微軟正黑體';
@@ -23,7 +22,7 @@
             .btn
             {
                 border: none;
-                border-radius: 5px;
+                border-radius: 3px;
                 padding: 5px;
             }
 
@@ -154,11 +153,30 @@
         ref.once("value",function(snapshots){
             let data=[];
             snapshots.forEach(function(snapshot){
-                data.push(snapshot.val());
+                let message=snapshot.val();
+                message.key=snapshot.key;
+                data.push(message);
             });
+            console.log(data);
             ShowData(data);
         })
     }
+
+    function Del(MessageKey)
+    {
+        let ref=DB.ref("/message/"+MessageKey);
+        ref.remove(function(error){
+            if(error){
+                console.log(error);
+            }
+            else
+            {
+                console.log("Remove Success");
+                Read();
+            }
+        })
+    }
+
 
     function ShowData(data)
     {
@@ -169,7 +187,26 @@
         for(let i=0;i<data.length;i++)
         {
             message=data[i];
-            list.innerHTML=message.name.bold()+"  "+message.content+"<hr />"+list.innerHTML;
+            if(CurrentUser===null)
+            {
+                //User Not Login Status
+                list.innerHTML=message.name.bold()+"  "+message.content+"<hr />"+list.innerHTML;
+            }
+            else
+            {
+                if(CurrentUser.id===message.id)
+                {
+                    // The Login User is same as Current User
+                    let DeleteButton="<input type='button' value='Delete' class='btn' onclick='Del("+message.key+")'>";
+                    list.innerHTML=message.name.bold()+"  "+message.content+"<hr />"+list.innerHTML;
+                }
+                else
+                {
+                    // Not Login User
+                    list.innerHTML=message.name.bold()+"  "+message.content+"<hr />"+list.innerHTML;
+                }
+            }
+            
         }
     }
 
