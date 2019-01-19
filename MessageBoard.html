@@ -9,12 +9,21 @@
                 height: 100%;
                 margin: 0;
                 padding: 0;
-                /* text-align: center; */
+                text-align: center;
                 font-family: '微軟正黑體';
             }
             hr{
                 width: 90%;
+                border: none;
                 background-color: #E9E9E9;
+                height: 1px;
+            }
+
+            .btn
+            {
+                border: none;
+                border-radius: 5px;
+                padding: 5px;
             }
 
             .isHidden
@@ -31,13 +40,14 @@
     <body>
         <h3>Message Board</h3>
         <div id="div_Welcome" class="isHidden">
-            <input type="button" value="Sign In" onclick="Signin()">
+            <input type="button" class="btn" value="Sign In" onclick="Signin()">
         </div>
         <div id="div_Member" class="isHidden">
             <span>Helloooo</span>
             <input type="button" value="Sign Out" onclick="Signout()">
         </div>
         <br/>
+        <hr/>
         <div id="div_MessageList">
             Message List
         </div>
