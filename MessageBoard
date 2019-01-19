@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Message Board</title>
+        <meta charset="utf-8">
+        <style>
+             html, body 
+            {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                /* text-align: center; */
+                font-family: '微軟正黑體';
+            }
+            hr{
+                width: 90%;
+                background-color: #E9E9E9;
+            }
+
+            .isHidden
+            {
+                display: none;
+            }
+
+            .isVisible
+            {
+                display:inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Message Board</h3>
+        <div id="div_Welcome" class="isHidden">
+            <input type="button" value="Sign In">
+        </div>
+        <div id="div_Member" class="isHidden">
+            <span>Hello</span>
+        </div>
+        <br/>
+        <div id="div_MessageList">
+            Message List
+        </div>
+    </body>
+
+</html>
+<script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    let config = {
+        apiKey: "AIzaSyD5iRrqNHgXAwJC7KwFvUrZTjA4h8HZE4Q",
+        authDomain: "fir-501e7.firebaseapp.com",
+        databaseURL: "https://fir-501e7.firebaseio.com",
+        projectId: "fir-501e7",
+        //storageBucket: "fir-501e7.appspot.com",
+        //messagingSenderId: "759656616254"
+    };
+    firebase.initializeApp(config);
+    console.log(firebase);
+
+    let auth=firebase.auth();
+    auth.onAuthStateChanged(function(user){
+        let Welcome=document.querySelector("#div_Welcome");
+        let Member=document.querySelector("#div_Member");
+    if (user) {
+        // User is signed in.
+        console.log("user status :"+user);
+        Welcome.setAttribute("class","isHidden");
+        Member.setAttribute("class","isVisible");
+    } else {
+        // User is signed out.
+        console.log("user status :"+user);
+        Welcome.setAttribute("class","isVisible");
+        Member.setAttribute("class","isHidden");
+    }
+    });
+
+    function Signin()
+    {
+        auth.signInWithPopup(provider).then(function(result) 
+        {
+            
+        }).catch(function(error) {
+      
+        });
+    }
+</script>
