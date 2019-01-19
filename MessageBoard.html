@@ -43,7 +43,7 @@
             <input type="button" class="btn" value="Sign In" onclick="Signin()">
         </div>
         <div id="div_Member" class="isHidden">
-            <span>Helloooo</span>
+            <span>Helloooo</span><br/>
             <textarea id="content"></textarea>
             <input type="button" value="Post" onclick="Post()">
             <!-- <input type="button" class="btn" value="Sign Out" onclick="Signout()"> -->
@@ -119,7 +119,7 @@
         //add to database 
         let ref=DB.ref("/message");
         ref.push({
-            id:id, name:name, content:content, time:Date.Now()
+            id:id, name:name, content:content, time:Date.now()
         }
         ,function(error){
         if(error)
