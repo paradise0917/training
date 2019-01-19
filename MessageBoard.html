@@ -90,13 +90,11 @@
     auth.onAuthStateChanged(function(user){
         let Welcome=document.querySelector("#div_Welcome");
         let Member=document.querySelector("#div_Member");
-        let UserName=document.querySelector("#div_UserName");
     if (user) {
         // User is signed in.
         console.log("user sign in:"+user);
         Welcome.setAttribute("class","isHidden");
         Member.setAttribute("class","isVisible");
-        UserName.setAttribute("class","isVisible textAlign");
         CurrentUser=user;
         document.getElementById("Span_DisplayName").text="Hello, "+CurrentUser.displayName;
     } else {
@@ -104,7 +102,6 @@
         console.log("user sign out:"+user);
         Welcome.setAttribute("class","isVisible");
         Member.setAttribute("class","isHidden");
-        UserName.setAttribute("class","isHidden textAlign");
         CurrentUser=null;
         document.getElementById("Span_DisplayName").text="";
     }
@@ -160,9 +157,18 @@
         })
     }
 
-    function ShowData()
+    function ShowData(data)
     {
+        let list=document.querySelector("#div_MessageList");
+        list.innerHTML="";
 
+        let message;
+        for(let i=0;i<data.length;i++)
+        {
+            message=data[i];
+            list.innerHTML=message.name.bold()+" "+message.content+"<hr />"+list.innerHTML;
+
+        }
     }
 
     window.addEventListener("load",function(){
