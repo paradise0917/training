@@ -38,12 +38,15 @@
         </style>
     </head>
     <body>
+        <div id="div_UserName" class="isHidden">
+            Hello,<span id="Span_DisplayName"></span><br/>
+        </div>
         <h3>Message Board</h3>
         <div id="div_Welcome" class="isHidden">
             <input type="button" class="btn" value="Sign In" onclick="Signin()">
         </div>
         <div id="div_Member" class="isHidden">
-            <span>Helloooo</span><br/>
+            
             <textarea id="content"></textarea>
             <input type="button" value="Post" onclick="Post()">
             <!-- <input type="button" class="btn" value="Sign Out" onclick="Signout()"> -->
@@ -82,17 +85,21 @@
     auth.onAuthStateChanged(function(user){
         let Welcome=document.querySelector("#div_Welcome");
         let Member=document.querySelector("#div_Member");
+        let UserName=document.querySelector("#div_UserName");
     if (user) {
         // User is signed in.
         console.log("user sign in:"+user);
         Welcome.setAttribute("class","isHidden");
         Member.setAttribute("class","isVisible");
+        UserName.setAttribute("class","isVisible");
         CurrentUser=user;
+        document.querySelector("#Span_DisplayName").value=CurrentUser.displayName;
     } else {
         // User is signed out.
         console.log("user sign out:"+user);
         Welcome.setAttribute("class","isVisible");
         Member.setAttribute("class","isHidden");
+        UserName.setAttribute("class","isHidden");
         CurrentUser=null;
     }
     });
