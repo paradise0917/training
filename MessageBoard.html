@@ -98,7 +98,7 @@
         Member.setAttribute("class","isVisible");
         UserName.setAttribute("class","isVisible textAlign");
         CurrentUser=user;
-        document.getElementById("Span_DisplayName").value="Hello, "+CurrentUser.displayName;
+        document.getElementById("Span_DisplayName").text="Hello, "+CurrentUser.displayName;
     } else {
         // User is signed out.
         console.log("user sign out:"+user);
@@ -106,7 +106,7 @@
         Member.setAttribute("class","isHidden");
         UserName.setAttribute("class","isHidden textAlign");
         CurrentUser=null;
-        document.getElementById("Span_DisplayName").value="";
+        document.getElementById("Span_DisplayName").text="";
     }
     });
 
@@ -156,8 +156,13 @@
             snapshots.forEach(function(snapshot){
                 data.push(snapshot.val());
             });
-            console.log(data);
+            ShowData(data);
         })
+    }
+
+    function ShowData()
+    {
+
     }
 
     window.addEventListener("load",function(){
