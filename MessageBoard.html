@@ -43,7 +43,7 @@
             <input type="button" class="btn" value="Sign In" onclick="Signin()">
         </div>
         <div id="div_Member" class="isHidden">
-            <span>Helloooo</span>
+            <span>Helloooo</span><br/>
             <textarea id="content"></textarea>
             <input type="button" value="Post" onclick="Post()">
             <!-- <input type="button" class="btn" value="Sign Out" onclick="Signout()"> -->
@@ -115,7 +115,7 @@
     {
         let id=CurrentUser.uid;
         let name=CurrentUser.displayName;
-        let content=document.querySelector("#content").textContent;
+        let content=document.getElementById("content").textContent;
         //add to database 
         alert(content);
         let ref=DB.ref("/message");
