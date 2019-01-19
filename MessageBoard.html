@@ -34,7 +34,8 @@
             <input type="button" value="Sign In" onclick="Signin()">
         </div>
         <div id="div_Member" class="isHidden">
-            <span>Hello</span>
+            <span>Helloooo</span>
+            <input type="button" value="Sign Out" onclick="Signout()">
         </div>
         <br/>
         <div id="div_MessageList">
@@ -87,4 +88,16 @@
       
         });
     }
+
+    function Signout()
+    {
+        firebase.auth().signOut().then(function() {
+            // Sign-out successful.
+            console.log("Sign-out successful");
+        }).catch(function(error) {
+            // An error happened.
+        });
+    }
+
+   
 </script>
