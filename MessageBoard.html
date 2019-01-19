@@ -26,6 +26,11 @@
                 padding: 5px;
             }
 
+            .textAlign
+            {
+                text-align: right;
+            }
+
             .isHidden
             {
                 display: none;
@@ -38,7 +43,7 @@
         </style>
     </head>
     <body>
-        <div id="div_UserName" class="isHidden">
+        <div id="div_UserName" class="isHidden textAlign">
             Hello,<span id="Span_DisplayName"></span><br/>
         </div>
         <h3>Message Board</h3>
@@ -53,8 +58,8 @@
         </div>
         <br/>
         <hr/>
+        Message List
         <div id="div_MessageList">
-            Message List
         </div>
     </body>
 
@@ -124,7 +129,6 @@
         let name=CurrentUser.displayName;
         let content=document.getElementById("content").value;
         //add to database 
-        alert(content);
         let ref=DB.ref("/message");
         ref.push({
             id:id, 
