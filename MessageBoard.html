@@ -115,7 +115,7 @@
     {
         let id=CurrentUser.uid;
         let name=CurrentUser.displayName;
-        let content=document.getElementById("content").textContent;
+        let content=document.getElementById("content").value;
         //add to database 
         alert(content);
         let ref=DB.ref("/message");
