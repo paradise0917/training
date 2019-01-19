@@ -44,7 +44,9 @@
         </div>
         <div id="div_Member" class="isHidden">
             <span>Helloooo</span>
-            <input type="button" value="Sign Out" onclick="Signout()">
+            <textarea id="content"></textarea>
+            <input type="button" value="Post" onclick="Post()">
+            <!-- <input type="button" class="btn" value="Sign Out" onclick="Signout()"> -->
         </div>
         <br/>
         <hr/>
@@ -56,6 +58,8 @@
 </html>
 <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
 <script>
+    
+
     // Initialize Firebase
     let config = {
         apiKey: "AIzaSyD5iRrqNHgXAwJC7KwFvUrZTjA4h8HZE4Q",
@@ -69,6 +73,12 @@
     console.log(firebase);
 
     let auth=firebase.auth();
+    let provider=new firebase.auth.FacebookAuthProvider();
+    provider.addScope('user_birthday');
+    provider.setCustomParameters({'display': 'popup'});
+    let CurrentUser=null;
+    let DB=firebase.database();
+
     auth.onAuthStateChanged(function(user){
         let Welcome=document.querySelector("#div_Welcome");
         let Member=document.querySelector("#div_Member");
@@ -77,26 +87,19 @@
         console.log("user sign in:"+user);
         Welcome.setAttribute("class","isHidden");
         Member.setAttribute("class","isVisible");
+        CurrentUser=user;
     } else {
         // User is signed out.
         console.log("user sign out:"+user);
         Welcome.setAttribute("class","isVisible");
         Member.setAttribute("class","isHidden");
+        CurrentUser=null;
     }
     });
 
-    let provider=new firebase.auth.FacebookAuthProvider();
-    provider.addScope('user_birthday');
-    provider.setCustomParameters({'display': 'popup'});
-
     function Signin()
     {
-        auth.signInWithPopup(provider).then(function(result) 
-        {
-            console.log(result);
-        }).catch(function(error) {
-      
-        });
+        auth.signInWithPopup(provider).then(function(result) {}).catch(function(error) {});
     }
 
     function Signout()
@@ -104,9 +107,29 @@
         firebase.auth().signOut().then(function() {
             // Sign-out successful.
             console.log("Sign-out successful");
-        }).catch(function(error) {
-            // An error happened.
-        });
+            CurrentUser=null;
+        }).catch(function(error) {});
+    }
+
+    function Post()
+    {
+        let id=CurrentUser.uid;
+        let name=CurrentUser.displayName;
+        let content=document.querySelector("#content");
+        //add to database 
+        let ref=DB.ref("/message");
+        ref.push({
+            id:id, name:name, content:content, time:Date.Now()
+        }
+        ,function(error){
+        if(error)
+        {
+            console.log("Error",error);
+        }
+        else{
+            console.log("OK");
+        }
+    });
     }
 
    
