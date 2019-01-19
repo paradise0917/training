@@ -26,7 +26,7 @@
                 padding: 5px;
             }
 
-            .textAlign
+            .textAlignRight
             {
                 text-align: right;
             }
@@ -43,8 +43,8 @@
         </style>
     </head>
     <body>
-        <div id="div_UserName" class="isHidden textAlign">
-            Hello,<span id="Span_DisplayName"></span><br/>
+        <div id="div_UserName" class="textAlignRight">
+            <span id="Span_DisplayName"></span><br/>
         </div>
         <h3>Message Board</h3>
         <div id="div_Welcome" class="isHidden">
@@ -96,16 +96,17 @@
         console.log("user sign in:"+user);
         Welcome.setAttribute("class","isHidden");
         Member.setAttribute("class","isVisible");
-        UserName.setAttribute("class","isVisible");
+        UserName.setAttribute("class","isVisible textAlign");
         CurrentUser=user;
-        document.querySelector("#Span_DisplayName").value=CurrentUser.displayName;
+        document.getElementById("Span_DisplayName").value="Hello, "+CurrentUser.displayName;
     } else {
         // User is signed out.
         console.log("user sign out:"+user);
         Welcome.setAttribute("class","isVisible");
         Member.setAttribute("class","isHidden");
-        UserName.setAttribute("class","isHidden");
+        UserName.setAttribute("class","isHidden textAlign");
         CurrentUser=null;
+        document.getElementById("Span_DisplayName").value="";
     }
     });
 
@@ -147,5 +148,20 @@
     });
     }
 
+    function Read()
+    {
+        let ref=DB.ref("/message");
+        ref.once("value",function(snapshots){
+            let data=[];
+            snapshots.forEach(function(snapshot){
+                data.push(snapshot.val());
+            });
+            console.log(data);
+        })
+    }
+
+    window.addEventListener("load",function(){
+        Read();
+    })
    
 </script>
