@@ -51,8 +51,8 @@
         authDomain: "fir-501e7.firebaseapp.com",
         databaseURL: "https://fir-501e7.firebaseio.com",
         projectId: "fir-501e7",
-        //storageBucket: "fir-501e7.appspot.com",
-        //messagingSenderId: "759656616254"
+        storageBucket: "fir-501e7.appspot.com",
+        messagingSenderId: "759656616254"
     };
     firebase.initializeApp(config);
     console.log(firebase);
@@ -63,12 +63,12 @@
         let Member=document.querySelector("#div_Member");
     if (user) {
         // User is signed in.
-        console.log("user status :"+user);
+        console.log("user sign in:"+user);
         Welcome.setAttribute("class","isHidden");
         Member.setAttribute("class","isVisible");
     } else {
         // User is signed out.
-        console.log("user status :"+user);
+        console.log("user sign out:"+user);
         Welcome.setAttribute("class","isVisible");
         Member.setAttribute("class","isHidden");
     }
